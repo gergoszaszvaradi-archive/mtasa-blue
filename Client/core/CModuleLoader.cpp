@@ -41,7 +41,7 @@ bool CModuleLoader::LoadModule(const string& ModuleName)
     else
     {
         m_bStatus = false;
-        DWORD dwError = GetLastError();
+        // DWORD dwError = GetLastError();
         m_strLastError = SString(std::to_string(GetLastError()));
         // char  szError[2048] = {0};
         // FormatMessage(FORMAT_MESSAGE_FROM_SYSTEM | FORMAT_MESSAGE_IGNORE_INSERTS, NULL, dwError, LANG_NEUTRAL, szError, sizeof(szError), NULL);
