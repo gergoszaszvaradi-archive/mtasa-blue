@@ -7,7 +7,7 @@ jobs:
   windows:
     strategy:
       matrix:
-        platform: [win32, x64, arm64]
+        platform: [x64]
     name: windows-${{ matrix.platform }}
     runs-on: windows-2022
     steps:
@@ -49,38 +49,3 @@ jobs:
         with:
           name: InstallFiles
           path: InstallFiles/
-
-  macOS:
-    name: macOS
-    runs-on: macOS-latest
-    steps:
-      - uses: actions/checkout@v3
-
-      - name: Install MySQL
-        run: brew install mysql
-        continue-on-error: true
-
-      - name: Link MySQL
-        run: brew link --overwrite mysql
-
-      - name: Run Build
-        run: ./linux-build.sh --os=macosx
-
-  linux:
-    strategy:
-      matrix:
-        architecture: [x64, arm64]
-        include:
-        - architecture: x64
-          image-tag: latest
-        - architecture: arm64
-          image-tag: arm64
-    name: linux-${{ matrix.architecture }}
-    runs-on: ubuntu-latest
-    container:
-      image: docker://ghcr.io/multitheftauto/mtasa-blue-build:${{ matrix.image-tag }}
-    steps:
-      - uses: actions/checkout@v3
-
-      - name: Run Build
-        run: ./linux-build.sh --arch=${{ matrix.architecture }}

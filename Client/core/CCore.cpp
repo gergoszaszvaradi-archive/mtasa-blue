@@ -921,7 +921,11 @@ void LoadModule(CModuleLoader& m_Loader, const SString& strName, const SString& 
 #else
     SString strModuleFileName = strModuleName + ".dll";
 #endif
-    m_Loader.LoadModule(CalcMTASAPath(PathJoin("mta", strModuleFileName)));
+
+    SString path =  CalcMTASAPath(PathJoin("mta", strModuleFileName))
+
+    WriteDebugEvent(path);
+    m_Loader.LoadModule(path);
 
     if (m_Loader.IsOk() == false)
     {
