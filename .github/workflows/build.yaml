@@ -7,7 +7,7 @@ jobs:
   windows:
     strategy:
       matrix:
-        platform: [x64]
+        platform: [win32, x64]
     name: windows-${{ matrix.platform }}
     runs-on: windows-2022
     steps:
