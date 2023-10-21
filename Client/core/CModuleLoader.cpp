@@ -42,9 +42,10 @@ bool CModuleLoader::LoadModule(const string& ModuleName)
     {
         m_bStatus = false;
         DWORD dwError = GetLastError();
-        char  szError[2048] = {0};
-        FormatMessage(FORMAT_MESSAGE_FROM_SYSTEM | FORMAT_MESSAGE_IGNORE_INSERTS, NULL, dwError, LANG_NEUTRAL, szError, sizeof(szError), NULL);
-        m_strLastError = szError;
+        m_strLastError = SString(std::to_string(GetLastError()));
+        // char  szError[2048] = {0};
+        // FormatMessage(FORMAT_MESSAGE_FROM_SYSTEM | FORMAT_MESSAGE_IGNORE_INSERTS, NULL, dwError, LANG_NEUTRAL, szError, sizeof(szError), NULL);
+        // m_strLastError = szError;
     }
 
     return m_bStatus;
